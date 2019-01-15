@@ -26,6 +26,20 @@
 			<artifactId>pumpmyconnect-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <type>jar</type>
+            <scope>provided</scope>
+       	</dependency>
+        	
+        <dependency>
+	        <groupId>net.md-5</groupId>
+	        <artifactId>bungeecord-api</artifactId>
+           	<type>javadoc</type>
+            <scope>provided</scope>
+        </dependency>
   	
   	</dependencies>
   
