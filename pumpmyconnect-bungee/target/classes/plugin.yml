@@ -1,0 +1,7 @@
+main: fr.pumpmyconnect.MainConnect
+name: PumpMyConnect
+author: Clem-Fern
+version: 1.0.1
+commands:
+  pmc-reload:
+    description: Reload command
