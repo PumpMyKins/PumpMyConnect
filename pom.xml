@@ -9,5 +9,6 @@
   	<modules>
   		<module>bungee</module>
   		<module>core</module>
+  		<module>lobby</module>
   	</modules>
 </project>
