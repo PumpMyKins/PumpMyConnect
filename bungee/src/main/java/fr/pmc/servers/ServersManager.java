@@ -2,8 +2,10 @@ package fr.pmc.servers;
 
 import java.util.HashMap;
 
-public class ServersManager {
+import fr.pmc.core.utils.Logging;
 
+public class ServersManager extends Logging{
+	
 	private HashMap<String, Server> servers;
 
 	public ServersManager() {
@@ -19,6 +21,8 @@ public class ServersManager {
 		}
 		
 		this.servers.put(server.getName(), server);
+		getLogger().info("PMC: " + server.getName() + " added in ServerManager.");
+		
 		
 	}
 	
