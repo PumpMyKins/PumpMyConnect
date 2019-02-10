@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import fr.pmc.core.servers.ServerState;
+import fr.pmc.core.servers.ServerState.State.ParsingStateException;
 import fr.pmc.core.utils.Logging;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -18,9 +20,7 @@ public class ServersManager extends Logging{
 
 	public ServersManager() {
 		
-		this.servers = new HashMap<String, Server>();
-		
-		
+		this.servers = new HashMap<String, Server>();	
 		
 	}
 	
@@ -34,11 +34,24 @@ public class ServersManager extends Logging{
 		
 		if(this.getConfig().contains(serverPath)) {
 			
+			try {
+				
+				server.setState(ServerState.State.fromString(this.config.getString(serverPath + ".state")));
+				
+			} catch (ParsingStateException e) {
+				
+				getLogger().log(Level.SEVERE, "PMC configuration: parsing state error when getting from server[" + server.getName() + "] config !");
+				e.printStackTrace();
+				
+				server.setState(ServerState.State.OFF());
+				
+			}
 			server.setDisplayName(this.config.getString(serverPath + ".displayname"));
 			server.setAutoCheck(this.config.getBoolean(serverPath + ".autocheck"));
 			
 		}else {
 			
+			this.config.set(serverPath + ".state", server.getState().toString());
 			this.config.set(serverPath + ".displayname", server.getDisplayName());
 			this.config.set(serverPath + ".autocheck", server.isAutoCheck());
 			

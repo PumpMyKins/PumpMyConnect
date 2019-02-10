@@ -1,6 +1,6 @@
 package fr.pmc.servers;
 
-import fr.pmc.core.servers.State;
+import fr.pmc.core.servers.ServerState;
 import net.md_5.bungee.api.config.ServerInfo;
 
 public class Server {
@@ -8,7 +8,7 @@ public class Server {
 	private String name;
 	private String displayName;
 	
-	private State state;
+	private ServerState.State state;
 	private boolean autoCheck;
 	
 	private ServerInfo serverInfo;
@@ -46,11 +46,11 @@ public class Server {
 		this.autoCheck = autoCheck;
 	}
 
-	public State getState() {
+	public ServerState.State getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(ServerState.State state) {
 		this.state = state;
 	}
 	
