@@ -62,15 +62,19 @@ public class ServerState {
 	private State state;
 	private String raison;
 	
-	private State lastState;
-	
-	public ServerState(State s1, State s2) {
+	public ServerState(State state, String raison) {
 		
-		this.state = s1;
-		this.lastState = s2;
+		this.state = state;
+		this.raison = raison;
 		
 	}
-	
-	
+
+	public State getState() {
+		return state;
+	}
+
+	public String getRaison() {
+		return raison;
+	}
 	
 }
