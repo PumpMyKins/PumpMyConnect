@@ -1,6 +1,7 @@
 package fr.pmc.servers;
 
 import fr.pmc.core.servers.ServerState;
+import fr.pmc.core.servers.ServerState.State;
 import net.md_5.bungee.api.config.ServerInfo;
 
 public class Server {
