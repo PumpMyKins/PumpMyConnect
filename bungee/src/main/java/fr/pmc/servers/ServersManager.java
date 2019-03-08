@@ -9,13 +9,13 @@ import fr.pmc.core.utils.Logging;
 public class ServersManager extends Logging{
 	
 	private HashMap<String, Server> servers;
-	
-	private File configFile;
-	private Configuration config;
+	private ServersManagerConfig config;
 
-	public ServersManager() {
+
+	public ServersManager(PumpMyConnectBungee pumpMyConnectBungee) throws IOException {
 		
 		this.servers = new HashMap<String, Server>();	
+		this.config = new ServersManagerConfig(pumpMyConnectBungee);
 		
 	}
 	
