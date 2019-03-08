@@ -1,15 +1,10 @@
 package fr.pmc.servers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Level;
 
-import fr.pmc.core.servers.ServerState;
-import fr.pmc.core.servers.ServerState.State.ParsingStateException;
+import fr.pmc.PumpMyConnectBungee;
 import fr.pmc.core.utils.Logging;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.YamlConfiguration;
 
 public class ServersManager extends Logging{
 	
