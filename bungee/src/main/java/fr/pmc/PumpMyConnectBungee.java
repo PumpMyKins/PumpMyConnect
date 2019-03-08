@@ -17,10 +17,25 @@ public class PumpMyConnectBungee extends Plugin {
 		
 		Logging.setLogger(getLogger());
 		
-		ServersManager serverManager = new ServersManager();		
-		for (ServerInfo iterable_element : getProxy().getServers().values()) {
-			serverManager.addServer(new Server(iterable_element));			
-		}
+        if (!getDataFolder().exists()) {
+            getDataFolder().mkdir();
+        }
+		
+		ServersManager serverManager;
+		try {
+			serverManager = new ServersManager(this);
+			
+			for (ServerInfo server : getProxy().getServers().values()) {
+				serverManager.addServer(new Server(server));			
+			}
+			
+		} catch (IOException e) {			
+			getLogger().log(Level.SEVERE, "PMC configuration: initializing servers.yml file error !");
+			e.printStackTrace();			
+			return;
+		}	
+		
+
 		
 	}
 	
