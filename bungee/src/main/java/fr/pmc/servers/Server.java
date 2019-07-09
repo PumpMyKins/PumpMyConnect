@@ -9,10 +9,9 @@ public class Server {
 	private String name;
 	private String displayName;
 	
-	private ServerState.State state;
-	private boolean autoCheck;
-	
 	private ServerInfo serverInfo;
+	
+	
 	
 	public Server(ServerInfo serverInfo) {
 		
@@ -23,10 +22,6 @@ public class Server {
 		
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public String getDisplayName() {
 		return displayName;
 	}
@@ -35,24 +30,11 @@ public class Server {
 		this.displayName = displayName;
 	}
 
-	public ServerInfo getServerInfo() {
-		return serverInfo;
+	public String getName() {
+		return name;
 	}
-
-	public boolean isAutoCheck() {
-		return autoCheck;
-	}
-
-	public void setAutoCheck(boolean autoCheck) {
-		this.autoCheck = autoCheck;
-	}
-
-	public ServerState.State getState() {
-		return state;
-	}
-
-	public void setState(ServerState.State state) {
-		this.state = state;
-	}
+	
+	
+	
 	
 }
