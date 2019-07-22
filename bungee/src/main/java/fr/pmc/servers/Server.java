@@ -9,19 +9,18 @@ import net.md_5.bungee.api.config.ServerInfo;
 
 public class Server {
 
-	private String name;
-	private String displayName;
-	
+	private String name;	
+	private Server.State state;	
 	private ServerInfo serverInfo;
 	
-	
+	private Protocol version;
+	private Players players;
+	private ModInfo modInfo;
 	
 	public Server(ServerInfo serverInfo) {
 		
-		this.serverInfo = serverInfo;
-		
+		this.setServerInfo(serverInfo);	
 		this.name = this.serverInfo.getName();
-		this.displayName = this.name;
 		
 	}
 
