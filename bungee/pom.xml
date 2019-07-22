@@ -8,7 +8,7 @@
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>pumpmyconnect-bungee</artifactId>
+	<artifactId>pumpmybconnect</artifactId>
 
 	<dependencies>
 
