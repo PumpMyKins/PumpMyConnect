@@ -31,6 +31,29 @@ public class Server {
 	public String getName() {
 		return name;
 	}
+
+	public ServerInfo getServerInfo() {
+		return serverInfo;
+	}
+
+	public Protocol getVersion() {
+		return version;
+	}
+
+	public Players getPlayers() {
+		return players;
+	}
+
+	public ModInfo getModInfo() {
+		return modInfo;
+	}
+
+	public void setServerInfo(ServerInfo serverInfo) {
+		this.state = State.UNKNOWN;
+		this.serverInfo = serverInfo;
+		this.name = serverInfo.getName();
+		this.reload();
+	}	
 	
 	public enum State {
 		UNKNOWN,
