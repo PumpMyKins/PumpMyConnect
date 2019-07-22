@@ -24,18 +24,20 @@ public class Server {
 		
 	}
 
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public Server.State getState() {
+		return state;
 	}
 
 	public String getName() {
 		return name;
 	}
 	
+	public enum State {
+		UNKNOWN,
+		UNREACHABLE,
+		PENDING,
+		REACHABLE		
+	}
 	
 	
 	
