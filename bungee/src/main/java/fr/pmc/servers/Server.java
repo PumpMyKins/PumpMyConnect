@@ -1,5 +1,6 @@
 package fr.pmc.servers;
 
+import fr.pmc.MainPumpMyBConnect;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.ModInfo;
@@ -12,16 +13,15 @@ public class Server {
 	private String name;	
 	private Server.State state;	
 	private ServerInfo serverInfo;
-	
+
 	private Protocol version;
 	private Players players;
 	private ModInfo modInfo;
-	
+
 	public Server(ServerInfo serverInfo) {
-		
+
 		this.setServerInfo(serverInfo);	
-		this.name = this.serverInfo.getName();
-		
+
 	}
 
 	public Server.State getState() {
@@ -54,37 +54,41 @@ public class Server {
 		this.name = serverInfo.getName();
 		this.reload();
 	}	
-	
+
 	public enum State {
 		UNKNOWN,
 		UNREACHABLE,
 		PENDING,
 		REACHABLE		
 	}
-	
+
 	public void reload() {
-		
+
 		this.state = State.PENDING;
-		
+
 		this.serverInfo.ping(new Callback<ServerPing>() {
 
 			@Override
 			public void done(ServerPing result, Throwable error) {
-				
+
+				MainPumpMyBConnect.LOGGER.info("Server[" + name + "] starting reload !");
+
 				if(result == null || error != null) {					
 					state = State.UNREACHABLE;					
 					return;
+				}else {
+					state = State.REACHABLE;
+					version = result.getVersion();
+					players = result.getPlayers();
+					modInfo = result.getModinfo();
 				}
 				
-				state = State.REACHABLE;
-				version = result.getVersion();
-				players = result.getPlayers();
-				modInfo = result.getModinfo();
+				MainPumpMyBConnect.LOGGER.info("Server[" + name + "] successfully reloaded : " + state.name());
 				
 			}
-			
+
 		});
-		
+
 	}
-	
+
 }
