@@ -62,6 +62,29 @@ public class Server {
 		REACHABLE		
 	}
 	
-	
+	public void reload() {
+		
+		this.state = State.PENDING;
+		
+		this.serverInfo.ping(new Callback<ServerPing>() {
+
+			@Override
+			public void done(ServerPing result, Throwable error) {
+				
+				if(result == null || error != null) {					
+					state = State.UNREACHABLE;					
+					return;
+				}
+				
+				state = State.REACHABLE;
+				version = result.getVersion();
+				players = result.getPlayers();
+				modInfo = result.getModinfo();
+				
+			}
+			
+		});
+		
+	}
 	
 }
