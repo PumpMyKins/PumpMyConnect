@@ -1,4 +1,4 @@
-name: PumpMyConnect
-main: fr.pmc.PumpMyConnectBungee
+name: PumpMyBConnect
+main: fr.pmc.MainPumpMyBConnect
 version: 1.0
 author: Clem_Fern
