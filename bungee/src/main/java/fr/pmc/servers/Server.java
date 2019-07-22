@@ -1,7 +1,10 @@
 package fr.pmc.servers;
 
-import fr.pmc.core.servers.ServerState;
-import fr.pmc.core.servers.ServerState.State;
+import net.md_5.bungee.api.Callback;
+import net.md_5.bungee.api.ServerPing;
+import net.md_5.bungee.api.ServerPing.ModInfo;
+import net.md_5.bungee.api.ServerPing.Players;
+import net.md_5.bungee.api.ServerPing.Protocol;
 import net.md_5.bungee.api.config.ServerInfo;
 
 public class Server {
