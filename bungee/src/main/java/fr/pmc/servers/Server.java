@@ -94,13 +94,21 @@ public class Server {
 					version = result.getVersion();
 					players = result.getPlayers();
 					modInfo = result.getModinfo();
+					
 				}
-				
-				MainPumpMyBConnect.LOGGER.info("Server[" + name + "] successfully reloaded : " + state.name());
-				
-			}
 
+				MainPumpMyBConnect.LOGGER.info("Server[" + name + "] successfully reloaded : " + state.name());
+
+			}
 		});
+
+	}
+
+	public void writeConfiguration(Configuration configuration) {
+
+	}
+
+	public void readConfiguration(Configuration configuration) {
 
 	}
 
