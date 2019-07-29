@@ -12,19 +12,41 @@ import net.md_5.bungee.api.config.ServerInfo;
 public class ServersManager{
 	
 	private HashMap<String, Server> servers;
-	private ServersManagerConfig config;
+	private ServersManagerConfig managerConfig;
+	private ServersReloaderManager reloaderManager;
 
-
-	public ServersManager(PumpMyConnectBungee pumpMyConnectBungee) throws IOException {
+	public ServersManager(MainPumpMyBConnect pumpMyConnectBungee) throws IOException {
 		
-		this.servers = new HashMap<String, Server>();	
-		this.config = new ServersManagerConfig(pumpMyConnectBungee);
+		this.servers = new HashMap<String, Server>();
+		this.managerConfig = new ServersManagerConfig(pumpMyConnectBungee);
+		this.reloaderManager = new ServersReloaderManager(pumpMyConnectBungee);
 		
-	}
-	
-	public void addServer(Server server) {
+		List<String> serverFiles = this.managerConfig.getServerFiles();
+		MainPumpMyBConnect.LOGGER.info("[ServersManager] " + serverFiles.size() + " server configuration file(s) found.");
 		
+		for (Entry<String, ServerInfo> entry : pumpMyConnectBungee.getProxy().getServers().entrySet()) {
+			
+			Server server = new Server(entry.getValue());
+			if(serverFiles.contains(server.getName())) {
+				this.managerConfig.loadFileInServer(server);
+				MainPumpMyBConnect.LOGGER.info("[ServersManager]=> Server[" + server.getName() + "] successfully loaded File");
+			}else {
+				this.managerConfig.exportServerInFile(server);
+				MainPumpMyBConnect.LOGGER.info("[ServersManager]=> Server[" + server.getName() + "] successfully created File");
+			}			
+			this.servers.put(entry.getKey(), new Server(entry.getValue()));
+			
+		}
 		
+		for (String string : serverFiles) {
+			
+			if(this.servers.containsKey(string)) {
+				continue;
+			}
+			
+			MainPumpMyBConnect.LOGGER.warning("[ServersManagerConfig]=> Server[" + string + "] unused file found.");
+			
+		}
 		
 	}
 
