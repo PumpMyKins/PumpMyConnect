@@ -82,7 +82,12 @@ public class Server {
 				MainPumpMyBConnect.LOGGER.info("Server[" + name + "] starting reload !");
 
 				if(result == null || error != null) {					
-					state = State.UNREACHABLE;					
+					state = State.UNREACHABLE;
+					try {
+						MainPumpMyBConnect.SERVERS_MANAGER.getReloaderManager().appendReloader(get(),TimeUnit.MINUTES,5);
+					} catch (ReloaderAlreadyStartedException e) {
+						e.printStackTrace();
+					}
 					return;
 				}else {
 					state = State.REACHABLE;
