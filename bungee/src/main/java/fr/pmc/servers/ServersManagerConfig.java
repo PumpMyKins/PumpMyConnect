@@ -19,13 +19,25 @@ public class ServersManagerConfig {
 		this.main = m;
 		saveDefaultConfig();
 	}
-	
-	public File getConfigFile() {
-		return configFile;
+
+	private final File getDirectory() {
+		return new File(this.main.getDataFolder(),"servers");
 	}
 
-	public Configuration getConfig() {
-		return config;
+	private void saveDefaultConfig() throws IOException	{
+
+		if (!this.main.getDataFolder().exists()) {
+			this.main.getDataFolder().mkdir();
+			this.main.getLogger().info("Default configuration directory created !");
+		}
+
+		File folder = getDirectory();
+		if (!folder.exists()) {
+
+			folder.mkdir();
+
+		}
+
 	}
 
 	public void writeServer(Server server) {
