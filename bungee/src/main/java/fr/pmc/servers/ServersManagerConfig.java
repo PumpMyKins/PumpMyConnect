@@ -13,18 +13,11 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 public class ServersManagerConfig {
 
-	private File configFile;
-	private Configuration config;
-	
-	public ServersManagerConfig(PumpMyConnectBungee pumpMyConnectBungee) throws IOException {
-		
-		configFile = new File(pumpMyConnectBungee.getDataFolder(), "servers.yml");
-        if (!configFile.exists()) {
-            configFile.createNewFile();
-        }
-        
-        this.config = YamlConfiguration.getProvider(YamlConfiguration.class).load(this.configFile);
-        
+	private MainPumpMyBConnect main;
+
+	public ServersManagerConfig(MainPumpMyBConnect m) throws IOException {
+		this.main = m;
+		saveDefaultConfig();
 	}
 	
 	public File getConfigFile() {
