@@ -2,9 +2,13 @@ package fr.pmc.servers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import fr.pmc.PumpMyConnectBungee;
+import fr.pmc.MainPumpMyBConnect;
 import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 public class ServersManagerConfig {
