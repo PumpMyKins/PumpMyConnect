@@ -19,13 +19,18 @@ public class MainPumpMyBConnect extends Plugin {
 		LOGGER = this.getLogger();
 		
 		try {
+			CONFIG_MANAGER = new ConfigManager(this);			
+		} catch (IOException e) {
+			e.printStackTrace();
+			this.getProxy().stop();
+			return;
+		}
+		
+		try {
 			
-			ServersManager manager = new ServersManager(this);
-			manager.init();
-			SERVERS_MANAGER = manager;
+			SERVERS_MANAGER = new ServersManager(this);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			this.getProxy().stop();
 			return;
