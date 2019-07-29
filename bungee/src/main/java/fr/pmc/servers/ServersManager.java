@@ -50,12 +50,16 @@ public class ServersManager{
 		
 	}
 
+	public ServersManagerConfig getManagerConfig() {
+		return managerConfig;
+	}
+
 	public HashMap<String, Server> getServers() {
 		return servers;
 	}
-	
-	public ServersManagerConfig getConfig() {		
-		return this.config;		
+
+	public ServersReloaderManager getReloaderManager() {
+		return reloaderManager;
 	}
 	
 }
