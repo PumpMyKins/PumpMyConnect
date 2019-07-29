@@ -7,11 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pmc.MainPumpMyBConnect;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
+import fr.pmc.utils.ManagerConfig;
 
-public class ServersManagerConfig {
+public class ServersManagerConfig extends ManagerConfig{
 
 	private MainPumpMyBConnect main;
 
@@ -20,7 +18,7 @@ public class ServersManagerConfig {
 		saveDefaultConfig();
 	}
 
-	private final File getDirectory() {
+	public File getDirectory() {
 		return new File(this.main.getDataFolder(),"servers");
 	}
 
@@ -65,29 +63,11 @@ public class ServersManagerConfig {
 	}
 
 	public void exportServerInFile(Server server) throws IOException {
-
-		File serverFile = new File(getDirectory(), server.getName() + ".yml");
-		if(!serverFile.exists()) {
-			serverFile.createNewFile();
-		}
-		Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(serverFile);
-		
-		server.writeConfiguration(configuration);
-		
-		ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, serverFile);		
-
+		this.exportInFile(server);
 	}
 
 	public void loadFileInServer(Server server) throws IOException {
-
-		File serverFile = new File(getDirectory(), server.getName() + ".yml");
-		if(!serverFile.exists()) {
-			throw new IOException("File not found !");
-		}
-		Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(serverFile);
-		
-		server.readConfiguration(configuration);
-
+		this.loadFileIn(server);
 	}
 
 }
