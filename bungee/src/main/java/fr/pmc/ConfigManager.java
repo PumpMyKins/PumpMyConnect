@@ -14,13 +14,13 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 public class ConfigManager {
 
-	//private Configuration configuration = null;
+	private Configuration configuration = null;
 	private MainPumpMyBConnect main;
 
 	public ConfigManager(MainPumpMyBConnect m) throws IOException {
 		this.main = m;
 		saveDefaultConfig();
-		//this.configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(getFile());
+		this.configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(getFile());
 	}
 
 	private final File getFile(){
@@ -38,7 +38,7 @@ public class ConfigManager {
 		if (!file.exists()) {
 
 			file.createNewFile();
-			InputStream is = this.main.getResourceAsStream("config.yml");
+			InputStream is = this.main.getResourceAsStream(file.getName());
 
 			OutputStream os = new FileOutputStream(file);
 
@@ -51,5 +51,9 @@ public class ConfigManager {
 		}
 
 	}
-
+	
+	public Configuration getConfiguration() {
+		return configuration;
+	}
+	
 }
