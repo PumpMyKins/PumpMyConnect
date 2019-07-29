@@ -40,22 +40,54 @@ public class ServersManagerConfig {
 
 	}
 
-	public void writeServer(Server server) {
-		
-		
-		
+	public boolean isServerFileExist(Server server) {
+
+		return new File(this.getDirectory() + File.separator + server.getName() + ".yml").exists();
+
 	}
-	
-	public Server readServer(String name) {
+
+	public List<String> getServerFiles(){
+
+		List<String> l = new ArrayList<String>();
 		
-		return null;
+		File folder = getDirectory();
+		List<File> listOfFiles = new ArrayList<>(Arrays.asList(folder.listFiles()));
 		
+		for (File file : listOfFiles) {
+			
+			if(file.isFile() & file.getName().endsWith(".yml")) {
+				l.add(file.getName().split(".yml")[0]);
+			}
+			
+		}
+		
+		return l;
 	}
-	
-	public boolean containsServer(Server server) {
+
+	public void exportServerInFile(Server server) throws IOException {
+
+		File serverFile = new File(getDirectory(), server.getName() + ".yml");
+		if(!serverFile.exists()) {
+			serverFile.createNewFile();
+		}
+		Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(serverFile);
 		
-		return false;
+		server.writeConfiguration(configuration);
 		
+		ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, serverFile);		
+
 	}
-	
+
+	public void loadFileInServer(Server server) throws IOException {
+
+		File serverFile = new File(getDirectory(), server.getName() + ".yml");
+		if(!serverFile.exists()) {
+			throw new IOException("File not found !");
+		}
+		Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(serverFile);
+		
+		server.readConfiguration(configuration);
+
+	}
+
 }
