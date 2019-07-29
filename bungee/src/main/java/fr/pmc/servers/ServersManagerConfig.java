@@ -28,7 +28,7 @@ public class ServersManagerConfig {
 
 		if (!this.main.getDataFolder().exists()) {
 			this.main.getDataFolder().mkdir();
-			this.main.getLogger().info("Default configuration directory created !");
+			this.main.getLogger().info("[Servers] Default configuration directory created !");
 		}
 
 		File folder = getDirectory();
