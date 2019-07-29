@@ -8,6 +8,10 @@ import java.io.OutputStream;
 
 import com.google.common.io.ByteStreams;
 
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
+
 public class ConfigManager {
 
 	//private Configuration configuration = null;
