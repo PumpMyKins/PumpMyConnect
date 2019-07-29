@@ -10,6 +10,8 @@ public class MainPumpMyBConnect extends Plugin {
 
 	public static Logger LOGGER;
 	public static ServersManager SERVERS_MANAGER;
+	
+	public static ConfigManager CONFIG_MANAGER;
 
 	@Override
 	public void onEnable() {
