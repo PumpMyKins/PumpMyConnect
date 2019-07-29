@@ -88,7 +88,6 @@ public class Server {
 					} catch (ReloaderAlreadyStartedException e) {
 						e.printStackTrace();
 					}
-					return;
 				}else {
 					state = State.REACHABLE;
 					version = result.getVersion();
