@@ -2,11 +2,14 @@ package fr.pmc.servers;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
-import fr.pmc.PumpMyConnectBungee;
-import fr.pmc.core.utils.Logging;
+import fr.pmc.MainPumpMyBConnect;
+import fr.pmc.servers.reloader.ServersReloaderManager;
+import net.md_5.bungee.api.config.ServerInfo;
 
-public class ServersManager extends Logging{
+public class ServersManager{
 	
 	private HashMap<String, Server> servers;
 	private ServersManagerConfig config;
