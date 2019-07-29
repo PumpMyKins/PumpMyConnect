@@ -34,7 +34,7 @@ public class ServersManager{
 				this.managerConfig.exportServerInFile(server);
 				MainPumpMyBConnect.LOGGER.info("[ServersManager]=> Server[" + server.getName() + "] successfully created File");
 			}			
-			this.servers.put(entry.getKey(), new Server(entry.getValue()));
+			this.servers.put(entry.getKey(), server);
 			
 		}
 		
