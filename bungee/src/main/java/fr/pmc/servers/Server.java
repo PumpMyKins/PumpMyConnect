@@ -66,6 +66,10 @@ public class Server {
 		REACHABLE		
 	}
 
+	private Server get() {
+		return this;
+	}
+
 	public void reload() {
 
 		this.state = State.PENDING;
